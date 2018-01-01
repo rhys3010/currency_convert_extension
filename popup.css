@@ -1,0 +1,53 @@
+body{
+  width: 355px;
+  white-space: nowrap;
+}
+
+.banner{
+  display: block;
+  margin: auto;
+}
+
+select{
+  display: block;
+  margin: auto;
+}
+
+.credit{
+  text-align: center;
+  font-size: 10px;
+  color: darkgrey;
+}
+
+.source{
+  display: inline-block;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.arrow{
+  margin-left: 40px;
+  vertical-align: middle;
+}
+
+.destination{
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.convert_btn{
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: black;
+  padding: 8px 12px;
+  border: 2px solid darkgrey;
+  border-radius: 4px;
+}
+
+.convert_btn:hover{
+  border: 2px solid #28b14a;
+}
