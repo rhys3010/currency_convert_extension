@@ -12,12 +12,10 @@ const GBP = 1;
 const EUR = 2;
 
 /**
-  * Currency variables
+  * Currency variables from injection file
 */
-var sourceCurrency = source;
-var destinationCurrency = dest;
-
-
+var sourceCurrency;
+var destinationCurrency;
 
 /**
   * Exchange rates
@@ -27,7 +25,7 @@ const GBP_USD_EXCHANGE_RATE = 1.35;
 const GBP_EUR_EXCHANGE_RATE = 1.12;
 
 /**
-  * Helper funciton to convert one currency to another
+  * Utility funciton to convert one currency to another
 */
 function convert(value){
 
@@ -81,4 +79,13 @@ function convert(value){
   }
 
   return output;
+}
+
+
+/**
+  * Run the conversion within the current active tab
+*/
+function run(source, dest){
+  sourceCurrency = source;
+  destinationCurrency = dest;
 }

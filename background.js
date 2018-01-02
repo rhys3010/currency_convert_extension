@@ -3,32 +3,23 @@
   * @author Rhys Evans (http://rhysevans.xyz)
 */
 
-const USD = 0;
-const GBP = 1;
-const EUR = 2;
-
 /**
   * Currency configs
 */
-var sourceCurr;
-var destCurr;
+var sourceCurr = 0;
+var destCurr = 0;
 
 /**
-  * Inject javascript into the current tab and pass relevant program arguments.
+  * Inject javascript into the current tab
 */
-function injectScript(){
-  chrome.tabs.executeScript({
-    code: 'var source = 1; var dest = 2;'
-  }, function(){
-    chrome.tabs.executeScript({file: 'convert.js'});
-  });
-}
+chrome.tabs.executeScript({file: 'content.js'});
 
 /**
   * Listen for dropdown value changes and assign to variables
   * // TODO: Save dropdown state
 */
 document.addEventListener('DOMContentLoaded', function(){
+
   var source_dropdown = document.getElementById('source_dropdown');
   var dest_dropdown = document.getElementById('dest_dropdown');
 
@@ -40,10 +31,8 @@ document.addEventListener('DOMContentLoaded', function(){
   // Listen for dest value changes
   dest_dropdown.addEventListener('change', function(){
     destCurr = dest_dropdown.value;
-
   });
 });
-
 
 
 /**
@@ -53,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var btn = document.getElementById('submit_btn');
 
   btn.addEventListener('click', function(){
-    injectScript();
+    chrome.tabs.executeScript({
+      // Run the converter and pass the currency arguments
+      code: "run("+ sourceCurr + "," + destCurr + ");"
+    });
   });
 });
