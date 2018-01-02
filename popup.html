@@ -4,7 +4,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="./popup.css"/>
-  <script src="./popup.js"></script>
+  <script src="./inject.js"></script>
   <title>Currency Converter</title>
 </head>
 
@@ -14,10 +14,10 @@
 
   <div class="source">
     <p>Source Currency</p>
-    <select>
-      <option value="usd">USD</option>
-      <option value="gbp">GBP</option>
-      <option value="eur">EUR</option>
+    <select id="source_dropdown">
+      <option value=0>USD</option>
+      <option value=1>GBP</option>
+      <option value=2>EUR</option>
     </select>
 
   </div>
@@ -26,16 +26,16 @@
 
   <div class="destination">
     <p>Destination Currency</p>
-    <select>
-      <option value="usd">USD</option>
-      <option value="gbp">GBP</option>
-      <option value="eur">EUR</option>
+    <select id="dest_dropdown">
+      <option value=0>USD</option>
+      <option value=1>GBP</option>
+      <option value=2>EUR</option>
     </select>
   </div>
 
   <br/>
 
-  <button class="convert_btn">Convert</button>
+  <button id="submit_btn" class="convert_btn">Convert</button>
 
   <hr/>
 
