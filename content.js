@@ -20,14 +20,14 @@ var destinationCurrency;
 /**
   * Exchange rates
 */
-const EUR_USD_EXCHANGE_RATE = 1.20;
+const EUR_USD_EXCHANGE_RATE = 1.21;
 const GBP_USD_EXCHANGE_RATE = 1.35;
 const GBP_EUR_EXCHANGE_RATE = 1.12;
 
 /**
   * Utility funciton to convert one currency to another
 */
-function convert(value){
+function convertCurrency(value){
 
   var output;
 
@@ -73,12 +73,91 @@ function convert(value){
       default:
         output = value;
     }
-  }else{
-    console.error("Invalid Currency!");
-    output = 0;
   }
 
   return output;
+}
+
+/**
+  * Convert a given string to the correct currency
+*/
+function convertString(value){
+  // Sanitize input and convert to number
+  value = Number(value.replace(/[^0-9\.-]+/g,""));
+
+  // Convert input to correct currency and restrict to 2 decimal places
+  value = convertCurrency(value).toFixed(2);
+
+  // Construct string with correct symbol
+  switch(destinationCurrency){
+    case USD:
+      return '$'+value;
+    break;
+
+    case GBP:
+      return '£'+value;
+    break;
+
+    case EUR:
+      return '€'+value;
+    break;
+
+    default:
+      return null;
+  }
+}
+
+/**
+  * Perform the string replacement on a given text based on the source currency
+*/
+function getReplacedText(inputString){
+
+  // The replaced string
+  var outputString;
+
+  switch(sourceCurrency){
+    case USD:
+      outputString = inputString.replace(/\$([^\s]*)/gi, convertString(inputString));
+    break;
+
+    case GBP:
+      outputString = inputString.replace(/£([^\s]*)/gi, convertString(inputString));
+    break;
+
+    case EUR:
+      outputString = inputString.replace(/€([^\s]*)/gi, convertString(inputString));
+    break;
+  }
+
+  return outputString;
+}
+
+/**
+  * Match cases of a given currency and replace it
+*/
+function replaceAll(){
+  // Iterate through all elements and search/replace
+  var allElements = document.getElementsByTagName('*');
+
+  // Nested for loop to get all elements
+  for(var i = 0; i < allElements.length; i++){
+    var element = allElements[i];
+
+    for(var j = 0; j < element.childNodes.length; j++){
+      var node = element.childNodes[j];
+
+      if(node.nodeType == 3){
+        var text = node.nodeValue;
+
+        // Match given currency with regexp and replace with converted value and correct currency prefix
+        var replacedText = getReplacedText(text);
+
+        if(replacedText != text){
+          element.replaceChild(document.createTextNode(replacedText), node);
+        }
+      }
+    }
+  }
 }
 
 
@@ -88,4 +167,6 @@ function convert(value){
 function run(source, dest){
   sourceCurrency = source;
   destinationCurrency = dest;
+
+  replaceAll();
 }
