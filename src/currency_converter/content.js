@@ -91,7 +91,7 @@ function convertString(value){
   // Construct string with correct symbol
   switch(destinationCurrency){
     case USD:
-      return '$'+value;
+      return '$$'+value;
     break;
 
     case GBP:

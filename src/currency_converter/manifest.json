@@ -14,5 +14,6 @@
     "64": "/img/icon64.png",
    "128": "/img/icon128.png"
   },
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab"],
+  "update_url": "http://www.example.com/update.xml"
 }
