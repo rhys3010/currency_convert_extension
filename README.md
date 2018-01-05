@@ -13,6 +13,13 @@ This Chrome Extension will convert all text on a given webpage from one selected
 * Drag and drop 'currency_converter.crx' into the `chrome://extensions` tab
 * Select 'Add Extension'
 
+## Alternative Installation
+
+* Go to `chrome://extensions` in Chrome.
+* Ensure 'Developer Mode' is enabled.
+* Select 'Load Unpacked Extension'
+* Navigate to and select `/src/currency_extension`
+
 ## Usage
 
 * Select the currencies that you wish to convert to/from 
